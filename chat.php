@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GOV.BR - Verificação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+ 
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f9f9f9;
+      /* Permite rolagem vertical se necessário, evitando rolagem horizontal */
+      overflow-x: hidden;
+    }
+    header {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 0 20px;
+      border-bottom: 2px solid #0C326F;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+    .logo img {
+      height: 40px;
+    }
+    .barra {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .barra p {
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .usuario-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #0C326F;
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .usuario-area:hover {
+      background-color: #1a4a8e;
+    }
+    .headMensagem {
+      width: 100%;
+      background: #0C326F;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      z-index: 9;
+    }
+    .typebot-atendimento {
+      position: absolute;
+      top: 100px; /* Abaixo do header e da barra */
+      width: 100%;
+      height: calc(100vh - 100px);
+    }
+    typebot-standard {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    /* Media Queries para responsividade */
+    @media (max-width: 768px) {
+      header {
+        height: 50px;
+        padding: 0 10px;
+      }
+      .logo img {
+        height: 30px;
+      }
+      .barra p {
+        font-size: 12px;
+      }
+      .usuario-area {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      .headMensagem {
+        top: 50px;
+        font-size: 12px;
+        padding: 8px 10px;
+      }
+      .typebot-atendimento {
+        top: 90px;
+        height: calc(100vh - 90px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://i.postimg.cc/g2hJGhFB/Gov-br-logo-svg.png" alt="Logo Gov.br">
+    </div>
+    <div class="barra">
+      <p>PT ▼</p>
+      <div class="usuario-area">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" stroke-width="2" fill="none"></path>
+        </svg>
+        <span id="nomeUsuario"></span>
+      </div>
+    </div>
+  </header>
+  
+  <div class="headMensagem">
+    <p>Benefício <span> &gt; </span> Indenização <span> &gt; </span> Atendimento</p>
+  </div>
+  
+  <div class="typebot-atendimento">
+    <typebot-standard></typebot-standard>
+  </div>
+  
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has('nome')) {
+      const nomeCompleto = params.get('nome');
+      const primeiroNome = nomeCompleto.split(' ')[0];
+      const nomeCapitalizado = primeiroNome.charAt(0).toUpperCase() + primeiroNome.slice(1).toLowerCase();
+      document.getElementById('nomeUsuario').innerText = nomeCapitalizado;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const cpf = params.get('cpf') || '';
+
+      const typebotInitScript = document.createElement("script");
+      typebotInitScript.type = "module";
+      typebotInitScript.innerHTML = `
+        import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3.78/dist/web.js';
+
+        Typebot.initStandard({
+          typebot: "indeniza-gov-xtig8ub",
+          apiHost: "https://sendbot.chat",
+          customVariables: {
+            cpf: "${cpf}"
+          }
+        });
+      `;
+      document.body.append(typebotInitScript);
+
+      setTimeout(() => {
+        document.querySelector(".typebot-atendimento").scrollIntoView({ behavior: "smooth" });
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
