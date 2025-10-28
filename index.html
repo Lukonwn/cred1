@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Consulta CPF — Presell</title>
+    <meta name="description" content="Página educativa para consulta de CPF. Plataforma independente, sem vínculo com bancos ou órgãos oficiais." />
+    <style>
+        :root {
+            --azul: #0A66FF;
+            --azul-escuro: #0847B8;
+            --azul-claro: #E7F1FF;
+            --texto: #333333;
+            --bg: #F5F7FA;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+            background: var(--bg);
+            color: var(--texto);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .wrap {
+            max-width: 460px;
+            margin: 0 auto;
+            min-height: 100vh;
+            padding: 20px 16px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .topbar {
+            text-align: center;
+            font-size: 12px;
+            padding: 10px 12px;
+            background: #F0F8FF;
+            color: #1d4ed8;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            letter-spacing: .4px;
+        }
+
+        .card {
+            position: relative;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 12px 28px rgba(10, 102, 255, 0.12);
+            padding: 28px 20px 22px;
+        }
+
+        .icon {
+            width: 66px;
+            height: 66px;
+            background: var(--azul);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -33px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 3s infinite;
+            box-shadow: 0 10px 22px rgba(10, 102, 255, .35);
+        }
+
+        .icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: #fff;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .badge {
+            margin-top: 18px;
+            text-align: center;
+            color: var(--azul);
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: .2px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(20px, 5vw, 24px);
+            color: var(--azul);
+            margin: 6px 0 8px;
+            letter-spacing: .3px;
+        }
+
+        .desc {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 14px;
+            line-height: 1.45;
+        }
+
+        .cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(180deg, var(--azul) 0%, var(--azul-escuro) 100%);
+            padding: 14px 22px;
+            border-radius: 999px;
+            font-weight: 800;
+            letter-spacing: .3px;
+            box-shadow: 0 8px 20px rgba(10, 102, 255, .25);
+            margin: 6px auto 16px;
+            transition: transform .06s ease;
+        }
+
+        .cta:active {
+            transform: translateY(1px);
+        }
+
+        .info {
+            background: var(--azul-claro);
+            color: #0a3a88;
+            font-size: 13px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border-left: 4px solid var(--azul);
+            line-height: 1.55;
+            margin-bottom: 10px;
+        }
+
+        .small {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+            padding: 16px 8px 8px;
+        }
+
+        footer a {
+            color: var(--azul);
+            text-decoration: none;
+        }
+
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translate(-50%, -16%);
+                animation-timing-function: cubic-bezier(.8, 0, 1, 1);
+            }
+            50% {
+                transform: translate(-50%, 0);
+                animation-timing-function: cubic-bezier(0, 0, .2, 1);
+            }
+        }
+
+        /* Acessibilidade básica */
+
+        .cta:focus {
+            outline: 3px solid #a7c4ff;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <main class="card" role="main">
+            <div class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+            </div>
+
+            <div class="badge">✔ Verificado</div>
+            <h1>CONSULTA CPF</h1>
+            <p class="desc">Clique no botão abaixo para acessar serviços públicos de forma rápida e segura.</p>
+
+            <!-- Para alterar o destino do botão, troque o href abaixo. Ex.: https://consulltaliberada2025.online/consulte -->
+            <a class="cta" href="/consulte/">INICIAR CONSULTA</a>
+
+            <div class="info">
+                ✅ <strong>Verificação gratuita e educativa.</strong><br> Nenhum dado sensível é solicitado.<br> Em conformidade com a LGPD.
+            </div>
+
+            <div class="info">
+                ℹ️ <strong>Sobre a plataforma:</strong> Esta página tem objetivo informativo e educativo. Não intermedia acordos nem solicita qualquer forma de pagamento.
+            </div>
+
+            <p class="small">Ao continuar, você concorda com nossos termos e políticas.</p>
+        </main>
+
+        <footer>
+            <div>© 2025 - Consulta Online | Entidade de Apoio Educacional</div>
+            <div style="margin-top: 6px;">
+                <a href="/politica">Política de privacidade</a> |
+                <a href="/termos">Termos de uso</a> |
+                <a href="https://transparencyreport.google.com/" rel="nofollow noopener" target="_blank">Segurança digital</a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
